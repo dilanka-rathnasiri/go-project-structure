@@ -1,18 +1,11 @@
 # go-project-structure
 
-Example Go project demonstrating **shared, version-agnostic engines** alongside **version-specific infotainment systems**.
-
-**Mental model:** one way to accelerate (shared `Engine`), two ways to display navigation (v1 vs v2 `InfotainmentSystem`).
-
-| Concern | v1 vs v2 |
-|---------|----------|
-| `Engine` interface | Same — `internal/engine` |
-| Brand `Accelerate()` (Audi, BMW, Benz) | Same — `internal/engine/{brand}` |
-| `InfotainmentSystem` interface | Different — `InfotainmentSystemV1` vs `InfotainmentSystemV2` |
-| Brand infotainment implementations | Different — `internal/v1/infotainment/{brand}` vs `internal/v2/infotainment/{brand}` |
-| App orchestration | Different — `internal/v1/app` vs `internal/v2/app` |
-
-Versioning applies to **InfotainmentSystem** only. There is no `EngineV1` / `EngineV2`.
+- This repository demonstrates a clean Go project structure with:
+  - Multiple versions of major features (such as v1 vs v2 implementations)
+  - Multiple configuration sets for different use cases or deployments
+- Go module name is `car-system`.
+- **InfotainmentSystem** changes with each version (v1 vs v2) and each brand (Audi, BMW, Benz). Brand implementations live under `internal/v1/infotainment/{brand}` and `internal/v2/infotainment/{brand}`.
+- **Engine** changes with each brand (`internal/engine/audi`, `internal/engine/bmw`, `internal/engine/benz`). For the same brand, the engine is not versioned: v1 and v2 binaries both use the same `internal/engine/{brand}` package.
 
 ---
 
